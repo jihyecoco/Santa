@@ -15,7 +15,7 @@
 		<intercept-url pattern="/login/**" 			access="permitAll" />		
 		<intercept-url pattern="/**" 					access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		
-		<!-- 
+		<!-- commit test
 		/common
 		/user
 		/mountin
