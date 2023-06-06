@@ -16,27 +16,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spring.ex.login.model.UsersBean;
 import com.spring.ex.login.model.UsersDAO;
 
-/**
- * Handles requests for the application home page.
- */
+/*
+security-context.xml에서 default-target-url="/main.do" 
+	-> default-target-url : 로그인 후 보여질 페이지(성공적으로 로그인 이후 이동한 URL)
+
+*/
 @Controller
 public class IndexController {
+	
+	private final String command = "/main.lg";
+	private String gotoPage = "index";
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@Autowired
 	UsersDAO usersDAO;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main.lg", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, Principal principal) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		String getUserId = principal.getName();			// principal ��������ť��Ƽ �α��ε� ���� Object
+		String getUserId = principal.getName();			// Principal은 자바의 표준 시큐리티 기술로, 로그인이 된 상태라면 계정 정보를 담고있다.
 		
-		UsersBean loginInfo = usersDAO.getInfo(getUserId);
+		UsersBean userInfo = usersDAO.getInfo(getUserId);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
@@ -44,9 +47,9 @@ public class IndexController {
 		
 		model.addAttribute("serverTime", formattedDate );
 
-		model.addAttribute("userObj", loginInfo);
+		model.addAttribute("userInfo", userInfo);
 		
-		return "home";
+		return gotoPage; // index
 	}
 	
-}
+}//IndexController

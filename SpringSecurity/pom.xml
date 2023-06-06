@@ -9,7 +9,9 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 
-	<!-- Oracle DB repositories -->
+	<!-- Oracle DB repositories 
+	Spring 프레임워크에서 Oracle 데이터베이스와 연동하기 위한 
+	Oracle JDBC 드라이버를 Maven을 통해 가져온다. -->
 	<repositories>
 		<repository>
 			<id>oracle</id>
@@ -25,8 +27,9 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 
-		<!-- Spring 시큐리티 -->
-		<!-- <org.springframework-version>4.2.5.RELEASE</org.springframework-version> -->
+		<!-- Spring 시큐리티 
+		작성하면 에러는 아니지만 console에 worn표시-->
+		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
 		<!-- //Spring 시큐리티 -->
 
 	</properties>
@@ -134,65 +137,73 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- security -->
-
+		<!-- **security** -->
+		
+		<!--  Spring Security의 핵심 기능을 포함한 모듈
+		인증(Authentication)과 권한 부여(Authorization) 기능을 제공 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
+		
+		<!-- Spring Security의 웹 지원 기능을 포함한 모듈 
+		보안 설정을 구성하고 처리하는 데 필요한 클래스와 필터를 제공-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
+		
+		<!--  Spring Security의 구성(Configuration)을 위한 모듈 
+		XML 또는 Java 기반의 구성을 지원하는 클래스와 태그를 제공	-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
+		<!--   Spring Security 태그 라이브러리를 포함한 모듈 
+		 웹 애플리케이션에서 Spring Security의 태그를 사용하여 보안과 관련된 기능을 구현할 수 있도록함-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
-
-		<!-- //security -->
-
-		<!-- Spring DB Test : https://mvnrepository.com/artifact/org.springframework/spring-test -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
 		
+		<!-- **//security** -->
+		
+		<!--   spring-tx 모듈 설정
+		Spring 프레임워크의 트랜잭션 관련 기능을 사용 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- Spring JDBC 라이브러리 -->
+		<!-- Spring JDBC 라이브러리 
+		Spring 프레임워크에서 제공하는 JDBC 지원 모듈 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- Oracle DB -->
+		<!-- Oracle JDBC -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.1</version>
 		</dependency>
-		<!-- //Oracle DB -->
-
-		<!-- DBCP2 : https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+		<!-- //Oracle JDBC -->
+		
+		<!-- DBCP2
+		DBCP2 : https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.1.1</version>
-		</dependency>
+		</dependency> 
+		<!-- DBCP2 -->
 
 		<!-- MyBatis -->
 		<dependency>
@@ -231,8 +242,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source><!-- 1.6 -> 1.8 변경 -->
+					<target>1.8</target><!-- 1.6 -> 1.8 변경 -->
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
